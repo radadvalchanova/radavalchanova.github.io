@@ -24,6 +24,8 @@
       background-color: #ffffff;
       border-right: 1px solid #e6e8ef;
       overflow-y: hidden;
+      padding-bottom: 22px; /* ✅ guaranteed space under CV button */
+      box-sizing: border-box;
     }
 
     .w3-main { margin-left: var(--sidebar-w); }
@@ -40,7 +42,7 @@
     .sidebar-bottom {
       margin-top: auto;
       padding-top: 18px;
-      padding-bottom: 18px; /* space under CV */
+      padding-bottom: 18px;
     }
 
     /* Avatar placeholder */
@@ -137,7 +139,7 @@
 
     .w3-bottombar { border-bottom: 2px solid #e6e8ef; }
 
-    /* Filter buttons (base look) */
+    /* Filter buttons */
     .filter-btn {
       border-radius: 999px !important;
       background-color: #eef0fb !important;
@@ -152,7 +154,6 @@
       box-shadow: 0 8px 18px rgba(0,0,0,0.05);
     }
 
-    /* Active filter button */
     .filter-btn.is-active {
       background-color: #6f75c9 !important;
       color: #ffffff !important;
@@ -161,9 +162,9 @@
       transform: none;
     }
 
-    /* Project cards */
+    /* ✅ Project cards — smaller so 6 fit comfortably */
     .project-card {
-      min-height: 260px;
+      min-height: 220px; /* ✅ consistent height */
       display: flex;
       flex-direction: column;
       border-radius: 14px;
@@ -179,7 +180,7 @@
     }
 
     .project-top {
-      height: 110px;
+      height: 72px; /* ✅ reduced to save vertical space */
       background: linear-gradient(135deg, #eef0fb, #f8f8ff);
       border-bottom: 1px solid #e6e8ef;
       transition: background 220ms ease;
@@ -191,49 +192,61 @@
 
     .project-content {
       flex: 1;
-      padding: 18px;
+      padding: 14px 16px 14px 16px; /* ✅ tighter */
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
+    /* ✅ Titles smaller + clamped to 2 lines */
     .project-title {
-      min-height: 32px;
+      font-size: 1.05rem;
+      line-height: 1.25;
       font-weight: 700;
       color: #1f2937;
-      display: flex;
-      align-items: center;
       margin: 0;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
+    /* ✅ Description clamped to 3 lines */
     .project-desc {
+      font-size: 0.95rem;
       color: #4b5563;
-      line-height: 1.55;
+      line-height: 1.45;
       margin: 0;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
-    /* Tags */
+    /* Tags smaller */
     .tag-row {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     .tag {
-      display: inline-block;
-      font-size: 0.82rem;
-      padding: 6px 10px;
+      font-size: 0.78rem;
+      padding: 5px 9px;
       border-radius: 999px;
       border: 1px solid #e6e8ef;
       background: #f6f7ff;
       color: #4c4f69;
     }
 
-    /* Hidden cards when filtered */
-    .is-hidden {
-      display: none !important;
-    }
+    .is-hidden { display: none !important; }
+
+    /* Small spacing tweaks so 6 cards fit */
+    .w3-margin-bottom { margin-bottom: 16px !important; }
+    .w3-row-padding { padding-top: 6px; padding-bottom: 6px; }
 
     @media (max-width: 900px) {
       :root { --sidebar-w: 300px; }
@@ -241,9 +254,10 @@
     }
 
     @media (max-width: 600px) {
-      .w3-sidebar { width: 100%; position: relative; }
+      .w3-sidebar { width: 100%; position: relative; padding-bottom: 18px; }
       .w3-main { margin-left: 0; }
       .sidebar-inner { min-height: auto; }
+      .project-card { min-height: 210px; }
     }
   </style>
 </head>
@@ -290,7 +304,7 @@
 
 <!-- Main content -->
 <div class="w3-main">
-  <div class="w3-container" style="padding-top:24px;">
+  <div class="w3-container" style="padding-top:22px;">
 
     <h1>Rada Valchanova</h1>
 
@@ -384,7 +398,7 @@
         </div>
       </div>
 
-      <!-- 5: Coming soon (no tag => shows only in ALL) -->
+      <!-- 5: Coming soon -->
       <div class="w3-third w3-margin-bottom project-item" data-tags="">
         <div class="project-card">
           <div class="project-top"></div>
@@ -400,7 +414,7 @@
         </div>
       </div>
 
-      <!-- 6: Coming soon (no tag => shows only in ALL) -->
+      <!-- 6: Coming soon -->
       <div class="w3-third w3-margin-bottom project-item" data-tags="">
         <div class="project-card">
           <div class="project-top"></div>
@@ -444,7 +458,7 @@
         const show =
           selected === "all"
             ? true
-            : tags.includes(selected); // items without tags show only in ALL
+            : tags.includes(selected);
 
         item.classList.toggle("is-hidden", !show);
       });
@@ -458,7 +472,6 @@
       });
     });
 
-    // Default state
     filterProjects("all");
   })();
 </script>
