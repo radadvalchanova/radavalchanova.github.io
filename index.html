@@ -4,20 +4,133 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rada Valchanova | Portfolio</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f6f7fb;
+      color: #1f2933;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+    }
+
+    /* LEFT PROFILE CARD */
+    .profile {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .profile h1 {
+      font-size: 1.8rem;
+      margin: 0 0 6px 0;
+    }
+
+    .profile .title {
+      font-size: 0.95rem;
+      color: #5b6b7a;
+      margin-bottom: 16px;
+    }
+
+    .skills {
+      font-size: 0.9rem;
+      color: #3f4c59;
+      margin-bottom: 24px;
+    }
+
+    .contact a {
+      display: inline-block;
+      margin-right: 12px;
+      color: #6b8afd;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* RIGHT CONTENT */
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .section {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .section h2 {
+      margin: 0 0 16px 0;
+      font-size: 1.4rem;
+    }
+
+    .project-placeholder {
+      background: #f0f3ff;
+      border-radius: 12px;
+      padding: 18px;
+      color: #4b5fd6;
+      font-size: 0.95rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Rada Valchanova</h1>
-  <p>Junior Data Analyst | Data Storytelling & Visualization</p>
-  <p>Excel · SQL · Python · Power BI</p>
 
-  <h2>Projects</h2>
-  <p>Projects coming soon.</p>
+  <div class="container">
 
-  <h2>Contact</h2>
-  <p>
-    <a href="https://www.linkedin.com/">LinkedIn</a>
-    ·
-    <a href="mailto:YOUR_EMAIL_HERE">Email</a>
-  </p>
+    <!-- LEFT PROFILE -->
+    <aside class="profile">
+      <h1>Rada Valchanova</h1>
+      <div class="title">
+        Junior Data Analyst<br>
+        Data Storytelling & Visualization
+      </div>
+
+      <div class="skills">
+        Excel · SQL · Python · Power BI
+      </div>
+
+      <div class="contact">
+        <a href="https://www.linkedin.com/">LinkedIn</a>
+        <a href="mailto:YOUR_EMAIL_HERE">Email</a>
+      </div>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <main class="content">
+
+      <section class="section">
+        <h2>Projects</h2>
+        <div class="project-placeholder">
+          Projects coming soon.  
+          Currently building hands-on analysis projects using real datasets.
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
 </body>
 </html>
