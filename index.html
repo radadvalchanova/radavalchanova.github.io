@@ -14,9 +14,7 @@
       color: #2e3440;
     }
 
-    body {
-      background-color: #f5f6fa;
-    }
+    body { background-color: #f5f6fa; }
 
     :root { --sidebar-w: 360px; }
 
@@ -25,25 +23,24 @@
       width: var(--sidebar-w);
       background-color: #ffffff;
       border-right: 1px solid #e6e8ef;
-      overflow-y: hidden; /* ✅ remove scrollbar */
+      overflow-y: hidden;
     }
 
-    .w3-main {
-      margin-left: var(--sidebar-w);
-    }
+    .w3-main { margin-left: var(--sidebar-w); }
 
     /* Sidebar layout */
     .sidebar-inner {
       display: flex;
       flex-direction: column;
       padding: 22px 16px;
+      min-height: 100vh;
+      box-sizing: border-box;
     }
-
-    .sidebar-top { }
 
     .sidebar-bottom {
       margin-top: auto;
-      padding-top: 16px;
+      padding-top: 18px;
+      padding-bottom: 18px; /* space under CV */
     }
 
     /* Avatar placeholder */
@@ -97,6 +94,7 @@
       margin: 0 0 8px 0;
       font-size: 1rem;
       font-weight: 700;
+      color: #1f2937;
     }
 
     .side-about p {
@@ -132,26 +130,35 @@
       pointer-events: none;
     }
 
+    .side-links a:last-child { margin-bottom: 0; }
+
     /* Header */
-    h1 {
-      font-weight: 700;
-      margin-bottom: 8px;
+    h1 { font-weight: 700; margin-bottom: 8px; }
+
+    .w3-bottombar { border-bottom: 2px solid #e6e8ef; }
+
+    /* Filter buttons (base look) */
+    .filter-btn {
+      border-radius: 999px !important;
+      background-color: #eef0fb !important;
+      color: #4c4f69 !important;
+      border: 1px solid #e6e8ef !important;
+      transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
     }
 
-    .w3-bottombar {
-      border-bottom: 2px solid #e6e8ef;
+    .filter-btn:hover {
+      background-color: #e1e4f8 !important;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
     }
 
-    .w3-button.w3-black {
-      background-color: #6f75c9;
-      color: white;
-      border-radius: 999px;
-    }
-
-    .w3-button.w3-white {
-      background-color: #eef0fb;
-      color: #4c4f69;
-      border-radius: 999px;
+    /* Active filter button */
+    .filter-btn.is-active {
+      background-color: #6f75c9 !important;
+      color: #ffffff !important;
+      border-color: #6f75c9 !important;
+      box-shadow: 0 10px 22px rgba(111,117,201,0.22);
+      transform: none;
     }
 
     /* Project cards */
@@ -163,6 +170,7 @@
       background: #ffffff;
       box-shadow: 0 10px 28px rgba(0,0,0,0.06);
       transition: transform 180ms ease, box-shadow 180ms ease;
+      overflow: hidden;
     }
 
     .project-card:hover {
@@ -186,21 +194,45 @@
       padding: 18px;
       display: flex;
       flex-direction: column;
+      gap: 10px;
     }
 
     .project-title {
-      min-height: 28px;
+      min-height: 32px;
       font-weight: 700;
-      margin-bottom: 10px;
       color: #1f2937;
       display: flex;
       align-items: center;
+      margin: 0;
     }
 
     .project-desc {
       color: #4b5563;
       line-height: 1.55;
       margin: 0;
+    }
+
+    /* Tags */
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #e6e8ef;
+      background: #f6f7ff;
+      color: #4c4f69;
+    }
+
+    /* Hidden cards when filtered */
+    .is-hidden {
+      display: none !important;
     }
 
     @media (max-width: 900px) {
@@ -211,6 +243,7 @@
     @media (max-width: 600px) {
       .w3-sidebar { width: 100%; position: relative; }
       .w3-main { margin-left: 0; }
+      .sidebar-inner { min-height: auto; }
     }
   </style>
 </head>
@@ -228,7 +261,7 @@
 
       <div class="side-subtitle">
         Junior Data Analyst<br>
-        Data Storytelling & Visualization
+        Data Storytelling &amp; Visualization
       </div>
 
       <div class="side-skills">
@@ -246,7 +279,7 @@
 
     <div class="sidebar-bottom">
       <div class="side-links">
-        <a href="https://www.linkedin.com/in/rada-valchanova-a6432120a/" target="_blank">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/rada-valchanova-a6432120a/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="mailto:valchanovarada@gmail.com">Email</a>
         <a class="muted">CV (coming soon)</a>
       </div>
@@ -261,45 +294,70 @@
 
     <h1>Rada Valchanova</h1>
 
+    <!-- Filters -->
     <div class="w3-section w3-bottombar w3-padding-16">
       <span class="w3-margin-right">Filter:</span>
-      <button class="w3-button w3-black">ALL</button>
-      <button class="w3-button w3-white">Excel & Google Sheets</button>
-      <button class="w3-button w3-white">MySQL</button>
-      <button class="w3-button w3-white">Python</button>
-      <button class="w3-button w3-white">Power BI</button>
+
+      <button class="w3-button filter-btn is-active" data-filter="all">ALL</button>
+      <button class="w3-button filter-btn" data-filter="excel">Excel &amp; Google Sheets</button>
+      <button class="w3-button filter-btn" data-filter="mysql">MySQL</button>
+      <button class="w3-button filter-btn" data-filter="python">Python</button>
+      <button class="w3-button filter-btn" data-filter="powerbi">Power BI</button>
     </div>
 
-    <!-- Projects -->
+    <!-- Projects (6) -->
     <div class="w3-row-padding">
 
-      <!-- Repeatable card -->
-      <div class="w3-third w3-margin-bottom">
+      <!-- 1: Excel -->
+      <div class="w3-third w3-margin-bottom project-item" data-tags="excel">
         <div class="project-card">
           <div class="project-top"></div>
           <div class="project-content">
-            <div class="project-title">Project coming soon</div>
-            <p class="project-desc">Currently building hands-on analysis projects with real datasets.</p>
+            <h3 class="project-title">Coffee Shop Dashboard</h3>
+            <p class="project-desc">
+              Build an interactive dashboard to explore and analyze coffee shop sales. <b>Coming soon.</b>
+            </p>
+            <div class="tag-row">
+              <span class="tag">Excel</span>
+              <span class="tag">Dashboard</span>
+              <span class="tag">Sales</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="w3-third w3-margin-bottom">
+      <!-- 2: MySQL -->
+      <div class="w3-third w3-margin-bottom project-item" data-tags="mysql">
         <div class="project-card">
           <div class="project-top"></div>
           <div class="project-content">
-            <div class="project-title">Project coming soon</div>
-            <p class="project-desc">Dashboards, SQL insights, and clear storytelling in progress.</p>
+            <h3 class="project-title">Restaurant Order Analysis</h3>
+            <p class="project-desc">
+              Analyze order data to identify the most and least popular menu items and types of cuisine. <b>Coming soon.</b>
+            </p>
+            <div class="tag-row">
+              <span class="tag">MySQL</span>
+              <span class="tag">Orders</span>
+              <span class="tag">Insights</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="w3-third w3-margin-bottom">
+      <!-- 3: Python -->
+      <div class="w3-third w3-margin-bottom project-item" data-tags="python">
         <div class="project-card">
           <div class="project-top"></div>
           <div class="project-content">
-            <div class="project-title">Project coming soon</div>
-            <p class="project-desc">Portfolio projects will be published here very soon.</p>
+            <h3 class="project-title">AirBnB Listing Analysis</h3>
+            <p class="project-desc">
+              Analyze AirBnB listings in Paris to determine the impact of recent regulations. <b>Coming soon.</b>
+            </p>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">Policy</span>
+              <span class="tag">EDA</span>
+            </div>
           </div>
         </div>
       </div>
@@ -308,32 +366,52 @@
 
     <div class="w3-row-padding">
 
-      <div class="w3-third w3-margin-bottom">
+      <!-- 4: Power BI -->
+      <div class="w3-third w3-margin-bottom project-item" data-tags="powerbi">
         <div class="project-card">
           <div class="project-top"></div>
           <div class="project-content">
-            <div class="project-title">Project coming soon</div>
-            <p class="project-desc">Spreadsheet and reporting projects are being prepared.</p>
+            <h3 class="project-title">Toy Store KPI Report</h3>
+            <p class="project-desc">
+              Build a simple, interactive KPI report to track key metrics and explore high-level trends. <b>Coming soon.</b>
+            </p>
+            <div class="tag-row">
+              <span class="tag">Power BI</span>
+              <span class="tag">KPIs</span>
+              <span class="tag">Trends</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="w3-third w3-margin-bottom">
+      <!-- 5: Coming soon (no tag => shows only in ALL) -->
+      <div class="w3-third w3-margin-bottom project-item" data-tags="">
         <div class="project-card">
           <div class="project-top"></div>
           <div class="project-content">
-            <div class="project-title">Project coming soon</div>
-            <p class="project-desc">Python analysis + visuals will be linked here soon.</p>
+            <h3 class="project-title">Project coming soon</h3>
+            <p class="project-desc">
+              New project idea in progress. <b>Coming soon.</b>
+            </p>
+            <div class="tag-row">
+              <span class="tag">Coming soon</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="w3-third w3-margin-bottom">
+      <!-- 6: Coming soon (no tag => shows only in ALL) -->
+      <div class="w3-third w3-margin-bottom project-item" data-tags="">
         <div class="project-card">
           <div class="project-top"></div>
           <div class="project-content">
-            <div class="project-title">Project coming soon</div>
-            <p class="project-desc">Power BI dashboards will be added with screenshots and links.</p>
+            <h3 class="project-title">Project coming soon</h3>
+            <p class="project-desc">
+              New project idea in progress. <b>Coming soon.</b>
+            </p>
+            <div class="tag-row">
+              <span class="tag">Coming soon</span>
+            </div>
           </div>
         </div>
       </div>
@@ -342,6 +420,48 @@
 
   </div>
 </div>
+
+<script>
+  (function () {
+    const buttons = Array.from(document.querySelectorAll(".filter-btn"));
+    const items = Array.from(document.querySelectorAll(".project-item"));
+
+    function setActive(btn) {
+      buttons.forEach(b => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+    }
+
+    function filterProjects(tag) {
+      const selected = (tag || "all").toLowerCase();
+
+      items.forEach(item => {
+        const tags = (item.getAttribute("data-tags") || "")
+          .toLowerCase()
+          .split(",")
+          .map(s => s.trim())
+          .filter(Boolean);
+
+        const show =
+          selected === "all"
+            ? true
+            : tags.includes(selected); // items without tags show only in ALL
+
+        item.classList.toggle("is-hidden", !show);
+      });
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const tag = btn.getAttribute("data-filter");
+        setActive(btn);
+        filterProjects(tag);
+      });
+    });
+
+    // Default state
+    filterProjects("all");
+  })();
+</script>
 
 </body>
 </html>
