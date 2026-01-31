@@ -7,156 +7,118 @@
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style>
-    body,h1,h2,h3,h4,h5,h6 {
+    body, h1, h2, h3, h4, h5, h6 {
       font-family: "Raleway", sans-serif;
       color: #2e3440;
     }
 
-    body { background-color: #f5f6fa; }
+    body {
+      background-color: #f5f6fa;
+    }
 
     :root { --sidebar-w: 360px; }
 
     /* Sidebar */
     .w3-sidebar {
-      width: var(--sidebar-w) !important;
-      background-color: #ffffff !important;
+      width: var(--sidebar-w);
+      background-color: #ffffff;
       border-right: 1px solid #e6e8ef;
+      overflow-y: hidden; /* ✅ remove scrollbar */
     }
 
     .w3-main {
-      margin-left: var(--sidebar-w) !important;
-      background-color: #f5f6fa;
+      margin-left: var(--sidebar-w);
     }
 
-    h1 {
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      margin-bottom: 8px;
-    }
-
-    /* Card look (slightly more contrast) */
-    .w3-white {
-      background-color: #ffffff !important;
-      border-radius: 14px;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.06);
-    }
-
-    /* Filter bar */
-    .w3-bottombar { border-bottom: 2px solid #e6e8ef !important; }
-
-    /* Filter buttons */
-    .w3-button.w3-black {
-      background-color: #6f75c9 !important;
-      color: white !important;
-      border-radius: 999px;
-    }
-
-    .w3-button.w3-white {
-      background-color: #eef0fb !important;
-      color: #4c4f69 !important;
-      border-radius: 999px;
-    }
-
-    .w3-button.w3-white:hover { background-color: #e1e4f8 !important; }
-
-    /* Sidebar layout: make it a vertical layout with bottom buttons */
+    /* Sidebar layout */
     .sidebar-inner {
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding-top: 22px;
-      padding-bottom: 22px;
+      padding: 22px 16px;
     }
 
-    .sidebar-top {
-      padding: 0 16px;
-    }
+    .sidebar-top { }
 
     .sidebar-bottom {
-      margin-top: auto;            /* pushes to bottom */
-      padding: 0 16px;
-      padding-bottom: 8px;
+      margin-top: auto;
+      padding-top: 16px;
     }
 
-    /* Avatar placeholder (200x200) */
+    /* Avatar placeholder */
     .avatar-placeholder {
       width: 200px;
       height: 200px;
       border-radius: 50%;
       background: linear-gradient(135deg, #eef0fb, #e3e6f7);
       border: 3px solid #d8dcf0;
-      margin: 10px auto 18px auto;
+      margin: 8px auto 14px auto;
     }
 
     /* Sidebar text */
     .side-name {
       font-size: 1.35rem;
       font-weight: 700;
-      margin-top: 6px;
-      margin-bottom: 14px;
-      color: #1f2937;
       text-align: center;
+      margin-bottom: 10px;
+      color: #1f2937;
     }
 
     .side-subtitle {
+      text-align: center;
+      font-size: 1rem;
       color: #4b5563;
       line-height: 1.55;
-      margin-bottom: 18px;
-      font-size: 1rem;
-      text-align: center;
+      margin-bottom: 16px;
     }
 
     .side-skills {
-      display: block;
       text-align: center;
       background: #f0f1fb;
       color: #374151;
-      padding: 12px 14px;
+      padding: 12px;
       border-radius: 14px;
       font-size: 0.95rem;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       border: 1px solid #e6e8ef;
     }
 
-    /* About section inside sidebar */
+    /* About in sidebar */
     .side-about {
       background: #fbfbff;
       border: 1px solid #e6e8ef;
       border-radius: 14px;
-      padding: 14px 14px;
-      margin: 0 0 18px 0;
+      padding: 14px;
+      margin-bottom: 18px;
     }
 
     .side-about h4 {
       margin: 0 0 8px 0;
       font-size: 1rem;
       font-weight: 700;
-      color: #1f2937;
     }
 
     .side-about p {
       margin: 0;
+      font-size: 0.95rem;
       color: #4b5563;
       line-height: 1.55;
-      font-size: 0.95rem;
     }
 
-    /* Sidebar links/buttons */
+    /* Sidebar buttons */
     .side-links a {
       display: block;
+      text-align: center;
       text-decoration: none;
       font-weight: 600;
       color: #6f75c9;
       background: #f6f7ff;
       border: 1px solid #e6e8ef;
-      padding: 12px 14px;
+      padding: 12px;
       border-radius: 14px;
       margin-bottom: 12px;
-      transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
-      text-align: center;
+      transition: all 160ms ease;
     }
 
     .side-links a:hover {
@@ -170,11 +132,36 @@
       pointer-events: none;
     }
 
+    /* Header */
+    h1 {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .w3-bottombar {
+      border-bottom: 2px solid #e6e8ef;
+    }
+
+    .w3-button.w3-black {
+      background-color: #6f75c9;
+      color: white;
+      border-radius: 999px;
+    }
+
+    .w3-button.w3-white {
+      background-color: #eef0fb;
+      color: #4c4f69;
+      border-radius: 999px;
+    }
+
     /* Project cards */
     .project-card {
       min-height: 260px;
       display: flex;
       flex-direction: column;
+      border-radius: 14px;
+      background: #ffffff;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.06);
       transition: transform 180ms ease, box-shadow 180ms ease;
     }
 
@@ -190,69 +177,64 @@
       transition: background 220ms ease;
     }
 
-    /* Gentle gradient brightening on hover */
     .project-card:hover .project-top {
       background: linear-gradient(135deg, #f5f6ff, #ffffff);
     }
 
-    .project-card .w3-container {
+    .project-content {
       flex: 1;
+      padding: 18px;
       display: flex;
       flex-direction: column;
-      padding: 18px 18px 20px !important;
     }
 
-    /* Align titles */
     .project-title {
       min-height: 28px;
-      margin-bottom: 10px;
       font-weight: 700;
+      margin-bottom: 10px;
       color: #1f2937;
       display: flex;
       align-items: center;
     }
 
     .project-desc {
-      margin: 0;
       color: #4b5563;
       line-height: 1.55;
+      margin: 0;
     }
 
     @media (max-width: 900px) {
       :root { --sidebar-w: 300px; }
+      .w3-main { margin-left: 300px; }
     }
 
     @media (max-width: 600px) {
-      .w3-main { margin-left: 0 !important; }
-      .w3-sidebar { width: 280px !important; }
-      .sidebar-inner { min-height: auto; }
-      .sidebar-bottom { margin-top: 16px; }
+      .w3-sidebar { width: 100%; position: relative; }
+      .w3-main { margin-left: 0; }
     }
   </style>
 </head>
 
-<body class="w3-content" style="max-width:1600px">
+<body>
 
 <!-- Sidebar -->
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" id="mySidebar">
+<nav class="w3-sidebar">
   <div class="sidebar-inner">
 
     <div class="sidebar-top">
-
       <div class="avatar-placeholder"></div>
 
       <div class="side-name">Rada Valchanova</div>
 
       <div class="side-subtitle">
         Junior Data Analyst<br>
-        Data Storytelling &amp; Visualization
+        Data Storytelling & Visualization
       </div>
 
       <div class="side-skills">
         Excel · SQL · Python · Power BI
       </div>
 
-      <!-- ✅ About moved into sidebar (under skills, above buttons) -->
       <div class="side-about">
         <h4>About Me</h4>
         <p>
@@ -260,13 +242,11 @@
           and the kind of roles I’m targeting.
         </p>
       </div>
-
     </div>
 
-    <!-- ✅ Buttons moved to bottom with comfortable spacing -->
     <div class="sidebar-bottom">
       <div class="side-links">
-        <a href="https://www.linkedin.com/in/rada-valchanova-a6432120a/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/rada-valchanova-a6432120a/" target="_blank">LinkedIn</a>
         <a href="mailto:valchanovarada@gmail.com">Email</a>
         <a class="muted">CV (coming soon)</a>
       </div>
@@ -275,93 +255,93 @@
   </div>
 </nav>
 
-<!-- Page content -->
+<!-- Main content -->
 <div class="w3-main">
+  <div class="w3-container" style="padding-top:24px;">
 
-  <header>
-    <div class="w3-container" style="padding-top:18px;">
-      <h1>Rada Valchanova</h1>
+    <h1>Rada Valchanova</h1>
 
-      <div class="w3-section w3-bottombar w3-padding-16">
-        <span class="w3-margin-right">Filter:</span>
-        <button class="w3-button w3-black">ALL</button>
-        <button class="w3-button w3-white">Excel &amp; Google Sheets</button>
-        <button class="w3-button w3-white">MySQL</button>
-        <button class="w3-button w3-white">Python</button>
-        <button class="w3-button w3-white">Power BI</button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ✅ Projects back to 6 cards -->
-  <div class="w3-row-padding">
-
-    <div class="w3-third w3-container w3-margin-bottom">
-      <div class="w3-white project-card">
-        <div class="project-top"></div>
-        <div class="w3-container">
-          <div class="project-title">Project coming soon</div>
-          <p class="project-desc">Currently building hands-on analysis projects with real datasets.</p>
-        </div>
-      </div>
+    <div class="w3-section w3-bottombar w3-padding-16">
+      <span class="w3-margin-right">Filter:</span>
+      <button class="w3-button w3-black">ALL</button>
+      <button class="w3-button w3-white">Excel & Google Sheets</button>
+      <button class="w3-button w3-white">MySQL</button>
+      <button class="w3-button w3-white">Python</button>
+      <button class="w3-button w3-white">Power BI</button>
     </div>
 
-    <div class="w3-third w3-container w3-margin-bottom">
-      <div class="w3-white project-card">
-        <div class="project-top"></div>
-        <div class="w3-container">
-          <div class="project-title">Project coming soon</div>
-          <p class="project-desc">Dashboards, SQL insights, and clear storytelling in progress.</p>
+    <!-- Projects -->
+    <div class="w3-row-padding">
+
+      <!-- Repeatable card -->
+      <div class="w3-third w3-margin-bottom">
+        <div class="project-card">
+          <div class="project-top"></div>
+          <div class="project-content">
+            <div class="project-title">Project coming soon</div>
+            <p class="project-desc">Currently building hands-on analysis projects with real datasets.</p>
+          </div>
         </div>
       </div>
+
+      <div class="w3-third w3-margin-bottom">
+        <div class="project-card">
+          <div class="project-top"></div>
+          <div class="project-content">
+            <div class="project-title">Project coming soon</div>
+            <p class="project-desc">Dashboards, SQL insights, and clear storytelling in progress.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-third w3-margin-bottom">
+        <div class="project-card">
+          <div class="project-top"></div>
+          <div class="project-content">
+            <div class="project-title">Project coming soon</div>
+            <p class="project-desc">Portfolio projects will be published here very soon.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="w3-third w3-container w3-margin-bottom">
-      <div class="w3-white project-card">
-        <div class="project-top"></div>
-        <div class="w3-container">
-          <div class="project-title">Project coming soon</div>
-          <p class="project-desc">Portfolio projects will be published here very soon.</p>
+    <div class="w3-row-padding">
+
+      <div class="w3-third w3-margin-bottom">
+        <div class="project-card">
+          <div class="project-top"></div>
+          <div class="project-content">
+            <div class="project-title">Project coming soon</div>
+            <p class="project-desc">Spreadsheet and reporting projects are being prepared.</p>
+          </div>
         </div>
       </div>
+
+      <div class="w3-third w3-margin-bottom">
+        <div class="project-card">
+          <div class="project-top"></div>
+          <div class="project-content">
+            <div class="project-title">Project coming soon</div>
+            <p class="project-desc">Python analysis + visuals will be linked here soon.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-third w3-margin-bottom">
+        <div class="project-card">
+          <div class="project-top"></div>
+          <div class="project-content">
+            <div class="project-title">Project coming soon</div>
+            <p class="project-desc">Power BI dashboards will be added with screenshots and links.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
-
-  <div class="w3-row-padding">
-
-    <div class="w3-third w3-container w3-margin-bottom">
-      <div class="w3-white project-card">
-        <div class="project-top"></div>
-        <div class="w3-container">
-          <div class="project-title">Project coming soon</div>
-          <p class="project-desc">Spreadsheet and reporting projects are being prepared.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="w3-third w3-container w3-margin-bottom">
-      <div class="w3-white project-card">
-        <div class="project-top"></div>
-        <div class="w3-container">
-          <div class="project-title">Project coming soon</div>
-          <p class="project-desc">Python analysis + visuals will be linked here soon.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="w3-third w3-container w3-margin-bottom">
-      <div class="w3-white project-card">
-        <div class="project-top"></div>
-        <div class="w3-container">
-          <div class="project-title">Project coming soon</div>
-          <p class="project-desc">Power BI dashboards will be added with screenshots and links.</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
 </div>
+
 </body>
 </html>
