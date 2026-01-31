@@ -1,136 +1,367 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rada Valchanova | Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #f6f7fb;
-      color: #1f2933;
+    body,h1,h2,h3,h4,h5,h6 {
+      font-family: "Raleway", sans-serif;
+      color: #2e3440;
     }
 
-    .container {
-      max-width: 960px;
-      margin: 60px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 32px;
+    body { background-color: #f5f6fa; }
+
+    :root { --sidebar-w: 360px; }
+
+    /* Sidebar */
+    .w3-sidebar {
+      width: var(--sidebar-w) !important;
+      background-color: #ffffff !important;
+      border-right: 1px solid #e6e8ef;
     }
 
-    /* LEFT PROFILE CARD */
-    .profile {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    .w3-main {
+      margin-left: var(--sidebar-w) !important;
+      background-color: #f5f6fa;
     }
 
-    .profile h1 {
-      font-size: 1.8rem;
-      margin: 0 0 6px 0;
+    h1 {
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      margin-bottom: 8px;
     }
 
-    .profile .title {
-      font-size: 0.95rem;
-      color: #5b6b7a;
-      margin-bottom: 16px;
+    /* Card look (slightly more contrast) */
+    .w3-white {
+      background-color: #ffffff !important;
+      border-radius: 14px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.06);
     }
 
-    .skills {
-      font-size: 0.9rem;
-      color: #3f4c59;
-      margin-bottom: 24px;
+    /* Filter bar */
+    .w3-bottombar { border-bottom: 2px solid #e6e8ef !important; }
+
+    /* Filter buttons */
+    .w3-button.w3-black {
+      background-color: #6f75c9 !important;
+      color: white !important;
+      border-radius: 999px;
     }
 
-    .contact a {
-      display: inline-block;
-      margin-right: 12px;
-      color: #6b8afd;
-      text-decoration: none;
-      font-weight: 500;
+    .w3-button.w3-white {
+      background-color: #eef0fb !important;
+      color: #4c4f69 !important;
+      border-radius: 999px;
     }
 
-    .contact a:hover {
-      text-decoration: underline;
-    }
+    .w3-button.w3-white:hover { background-color: #e1e4f8 !important; }
 
-    /* RIGHT CONTENT */
-    .content {
+    /* Sidebar layout: make it a vertical layout with bottom buttons */
+    .sidebar-inner {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      padding-top: 22px;
+      padding-bottom: 22px;
     }
 
-    .section {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    .sidebar-top {
+      padding: 0 16px;
     }
 
-    .section h2 {
-      margin: 0 0 16px 0;
-      font-size: 1.4rem;
+    .sidebar-bottom {
+      margin-top: auto;            /* pushes to bottom */
+      padding: 0 16px;
+      padding-bottom: 8px;
     }
 
-    .project-placeholder {
-      background: #f0f3ff;
-      border-radius: 12px;
-      padding: 18px;
-      color: #4b5fd6;
+    /* Avatar placeholder (200x200) */
+    .avatar-placeholder {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #eef0fb, #e3e6f7);
+      border: 3px solid #d8dcf0;
+      margin: 10px auto 18px auto;
+    }
+
+    /* Sidebar text */
+    .side-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-top: 6px;
+      margin-bottom: 14px;
+      color: #1f2937;
+      text-align: center;
+    }
+
+    .side-subtitle {
+      color: #4b5563;
+      line-height: 1.55;
+      margin-bottom: 18px;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .side-skills {
+      display: block;
+      text-align: center;
+      background: #f0f1fb;
+      color: #374151;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+      border: 1px solid #e6e8ef;
+    }
+
+    /* About section inside sidebar */
+    .side-about {
+      background: #fbfbff;
+      border: 1px solid #e6e8ef;
+      border-radius: 14px;
+      padding: 14px 14px;
+      margin: 0 0 18px 0;
+    }
+
+    .side-about h4 {
+      margin: 0 0 8px 0;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .side-about p {
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.55;
       font-size: 0.95rem;
     }
 
-    /* Responsive */
-    @media (max-width: 800px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
+    /* Sidebar links/buttons */
+    .side-links a {
+      display: block;
+      text-decoration: none;
+      font-weight: 600;
+      color: #6f75c9;
+      background: #f6f7ff;
+      border: 1px solid #e6e8ef;
+      padding: 12px 14px;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+      text-align: center;
+    }
+
+    .side-links a:hover {
+      background: #eef0fb;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    }
+
+    .side-links .muted {
+      color: #8a93a3;
+      pointer-events: none;
+    }
+
+    /* Project cards */
+    .project-card {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.08);
+    }
+
+    .project-top {
+      height: 110px;
+      background: linear-gradient(135deg, #eef0fb, #f8f8ff);
+      border-bottom: 1px solid #e6e8ef;
+      transition: background 220ms ease;
+    }
+
+    /* Gentle gradient brightening on hover */
+    .project-card:hover .project-top {
+      background: linear-gradient(135deg, #f5f6ff, #ffffff);
+    }
+
+    .project-card .w3-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 18px 18px 20px !important;
+    }
+
+    /* Align titles */
+    .project-title {
+      min-height: 28px;
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+    }
+
+    .project-desc {
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 900px) {
+      :root { --sidebar-w: 300px; }
+    }
+
+    @media (max-width: 600px) {
+      .w3-main { margin-left: 0 !important; }
+      .w3-sidebar { width: 280px !important; }
+      .sidebar-inner { min-height: auto; }
+      .sidebar-bottom { margin-top: 16px; }
     }
   </style>
 </head>
 
-<body>
+<body class="w3-content" style="max-width:1600px">
 
-  <div class="container">
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" id="mySidebar">
+  <div class="sidebar-inner">
 
-    <!-- LEFT PROFILE -->
-    <aside class="profile">
-      <h1>Rada Valchanova</h1>
-      <div class="title">
+    <div class="sidebar-top">
+
+      <div class="avatar-placeholder"></div>
+
+      <div class="side-name">Rada Valchanova</div>
+
+      <div class="side-subtitle">
         Junior Data Analyst<br>
-        Data Storytelling & Visualization
+        Data Storytelling &amp; Visualization
       </div>
 
-      <div class="skills">
+      <div class="side-skills">
         Excel · SQL · Python · Power BI
       </div>
 
-      <div class="contact">
-        <a href="https://www.linkedin.com/">LinkedIn</a>
-        <a href="mailto:YOUR_EMAIL_HERE">Email</a>
+      <!-- ✅ About moved into sidebar (under skills, above buttons) -->
+      <div class="side-about">
+        <h4>About Me</h4>
+        <p>
+          (Coming soon) A short, clear summary about my focus, what I’m building,
+          and the kind of roles I’m targeting.
+        </p>
       </div>
-    </aside>
 
-    <!-- RIGHT CONTENT -->
-    <main class="content">
+    </div>
 
-      <section class="section">
-        <h2>Projects</h2>
-        <div class="project-placeholder">
-          Projects coming soon.  
-          Currently building hands-on analysis projects using real datasets.
+    <!-- ✅ Buttons moved to bottom with comfortable spacing -->
+    <div class="sidebar-bottom">
+      <div class="side-links">
+        <a href="https://www.linkedin.com/in/rada-valchanova-a6432120a/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:valchanovarada@gmail.com">Email</a>
+        <a class="muted">CV (coming soon)</a>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Page content -->
+<div class="w3-main">
+
+  <header>
+    <div class="w3-container" style="padding-top:18px;">
+      <h1>Rada Valchanova</h1>
+
+      <div class="w3-section w3-bottombar w3-padding-16">
+        <span class="w3-margin-right">Filter:</span>
+        <button class="w3-button w3-black">ALL</button>
+        <button class="w3-button w3-white">Excel &amp; Google Sheets</button>
+        <button class="w3-button w3-white">MySQL</button>
+        <button class="w3-button w3-white">Python</button>
+        <button class="w3-button w3-white">Power BI</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ✅ Projects back to 6 cards -->
+  <div class="w3-row-padding">
+
+    <div class="w3-third w3-container w3-margin-bottom">
+      <div class="w3-white project-card">
+        <div class="project-top"></div>
+        <div class="w3-container">
+          <div class="project-title">Project coming soon</div>
+          <p class="project-desc">Currently building hands-on analysis projects with real datasets.</p>
         </div>
-      </section>
+      </div>
+    </div>
 
-    </main>
+    <div class="w3-third w3-container w3-margin-bottom">
+      <div class="w3-white project-card">
+        <div class="project-top"></div>
+        <div class="w3-container">
+          <div class="project-title">Project coming soon</div>
+          <p class="project-desc">Dashboards, SQL insights, and clear storytelling in progress.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-third w3-container w3-margin-bottom">
+      <div class="w3-white project-card">
+        <div class="project-top"></div>
+        <div class="w3-container">
+          <div class="project-title">Project coming soon</div>
+          <p class="project-desc">Portfolio projects will be published here very soon.</p>
+        </div>
+      </div>
+    </div>
 
   </div>
 
+  <div class="w3-row-padding">
+
+    <div class="w3-third w3-container w3-margin-bottom">
+      <div class="w3-white project-card">
+        <div class="project-top"></div>
+        <div class="w3-container">
+          <div class="project-title">Project coming soon</div>
+          <p class="project-desc">Spreadsheet and reporting projects are being prepared.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-third w3-container w3-margin-bottom">
+      <div class="w3-white project-card">
+        <div class="project-top"></div>
+        <div class="w3-container">
+          <div class="project-title">Project coming soon</div>
+          <p class="project-desc">Python analysis + visuals will be linked here soon.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-third w3-container w3-margin-bottom">
+      <div class="w3-white project-card">
+        <div class="project-top"></div>
+        <div class="w3-container">
+          <div class="project-title">Project coming soon</div>
+          <p class="project-desc">Power BI dashboards will be added with screenshots and links.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 </body>
 </html>
