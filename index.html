@@ -81,6 +81,41 @@
       display: block;
     }
 
+    /* =================================================
+       ✅ EXTENSION: Photo improvements (A + B + C)
+       Pastel, light, gentle, professional
+       ================================================= */
+
+    /* A) soften photo slightly (keeps it real) */
+    .avatar-img {
+      filter: brightness(1.06) contrast(0.92) saturate(0.92);
+    }
+
+    /* C) softer border + shadow */
+    .avatar-wrapper {
+      border-color: #e3e6f7; /* slightly lighter than #d8dcf0 */
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+      position: relative; /* needed for overlay */
+    }
+
+    .avatar-wrapper:hover {
+      box-shadow: 0 12px 26px rgba(0,0,0,0.08);
+    }
+
+    /* B) subtle pastel overlay */
+    .avatar-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      pointer-events: none;
+      background: linear-gradient(
+        135deg,
+        rgba(238,240,251,0.20),
+        rgba(255,255,255,0.10)
+      );
+    }
+
     /* Sidebar text */
     .side-name {
       font-size: 1.35rem;
@@ -300,7 +335,6 @@
   <div class="sidebar-inner">
 
     <div class="sidebar-top">
-      <!-- ✅ EXTENSION: Real avatar image (place the file at /assets/portfolio-headshot.jpg) -->
       <div class="avatar-wrapper">
         <img src="assets/portfolio-headshot.jpg" alt="Rada Valchanova" class="avatar-img">
       </div>
