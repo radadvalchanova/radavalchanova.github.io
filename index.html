@@ -62,7 +62,7 @@
       border-radius: 18px; /* same soft square corners */
       background: linear-gradient(135deg, #eef0fb, #e3e6f7); /* matches your palette */
       border: 3px solid #d8dcf0; /* matches existing border */
-      margin: 8px auto 14px auto;
+      margin: 3px auto 14px auto;
       overflow: hidden; /* crops image nicely */
       box-shadow: 0 10px 24px rgba(0,0,0,0.08); /* light professional lift */
       transition: transform 180ms ease, box-shadow 180ms ease;
@@ -325,6 +325,35 @@
       .sidebar-inner { min-height: auto; }
       .project-card { min-height: 210px; }
     }
+  /* ============================
+   EXTENSION: Main name header polish (A + B)
+   Soft, light, professional
+   ============================ */
+
+
+.w3-main h1 {
+  color: #2a2f3a;                /* slightly cooler, refined tone */
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+  position: relative;
+}
+
+/* gentle pastel underline accent */
+.w3-main h1::after {
+  content: "";
+  display: block;
+  width: 52px;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    #cfd3f6,
+    #e6e8ff
+  );
+}
+
+  
   </style>
 </head>
 
