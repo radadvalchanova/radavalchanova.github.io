@@ -23,7 +23,7 @@
       width: var(--sidebar-w);
       background-color: #ffffff;
       border-right: 1px solid #e6e8ef;
-      overflow: hidden;              /* ✅ no scrollbar test */
+      overflow: hidden;              /* ✅ no scrollbar */
       padding-bottom: 34px;          /* ✅ guaranteed space under CV button */
       box-sizing: border-box;
     }
@@ -53,6 +53,32 @@
       background: linear-gradient(135deg, #eef0fb, #e3e6f7);
       border: 3px solid #d8dcf0;
       margin: 8px auto 14px auto;
+    }
+
+    /* ✅ EXTENSION: Real avatar image (matches the placeholder style) */
+    .avatar-wrapper {
+      width: 200px;
+      height: 200px;
+      border-radius: 18px; /* same soft square corners */
+      background: linear-gradient(135deg, #eef0fb, #e3e6f7); /* matches your palette */
+      border: 3px solid #d8dcf0; /* matches existing border */
+      margin: 8px auto 14px auto;
+      overflow: hidden; /* crops image nicely */
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08); /* light professional lift */
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .avatar-wrapper:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.10);
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;        /* ✅ no stretching */
+      object-position: 50% 25%; /* ✅ slightly higher framing */
+      display: block;
     }
 
     /* Sidebar text */
@@ -253,6 +279,9 @@
       :root { --sidebar-w: 300px; }
       .w3-main { margin-left: 300px; }
       .avatar-placeholder { width: 180px; height: 180px; }
+
+      /* ✅ EXTENSION: keep avatar image responsive too */
+      .avatar-wrapper { width: 180px; height: 180px; }
     }
 
     @media (max-width: 600px) {
@@ -271,7 +300,10 @@
   <div class="sidebar-inner">
 
     <div class="sidebar-top">
-      <div class="avatar-placeholder"></div>
+      <!-- ✅ EXTENSION: Real avatar image (place the file at /assets/portfolio-headshot.jpg) -->
+      <div class="avatar-wrapper">
+        <img src="assets/portfolio-headshot.jpg" alt="Rada Valchanova" class="avatar-img">
+      </div>
 
       <div class="side-name">Rada Valchanova</div>
 
